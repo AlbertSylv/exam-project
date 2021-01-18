@@ -24,6 +24,7 @@ public class SetupTestUsers {
     // Also, either delete this file, when users are created or rename and add to .gitignore
     // Whatever you do DO NOT COMMIT and PUSH with the real passwords
 
+    //ups jeg glemte at slette kodermne.. nu bliver min fiktive sportsclub hacket..
     User user = new User("user", "test2");
     User admin = new User("admin", "test2");
     User both = new User("user_admin", "test2");
