@@ -2,28 +2,29 @@ import React, { useEffect, useState } from "react";
 import Navbar from "./components/Navbar";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Container } from "react-bootstrap";
-import { Jokes, Signup, Login, Home } from "./components";
+import { Sports, Admin, Teams, Jokes, Signup, Login, Home } from "./components";
 import { getUserByJwt, setToken } from "./utils/token";
-import {loginMethod, logoutMethode} from './utils/loginUtils'
+import { loginMethod, logoutMethode } from "./utils/loginUtils";
 
 function App() {
   const init = { username: "", roles: [] };
-  const [user, setUser] = useState({...init});
-  const login = (user, pass) => loginMethod(user, pass, setUser)
-  const logout = () => logoutMethode(setUser, init)
+  const [user, setUser] = useState({ ...init });
+  const login = (user, pass) => loginMethod(user, pass, setUser);
+  const logout = () => logoutMethode(setUser, init);
 
-
+  const [sports, setSports] = useState([]);
+  const [sportTeams, setSportTeams] = useState([]);
 
   useEffect(() => {
-    if(getUserByJwt()){
-      setUser(getUserByJwt())
+    if (getUserByJwt()) {
+      setUser(getUserByJwt());
     }
-  },[]);
+  }, []);
 
   return (
     <>
       <Router>
-        <Navbar user={user} logout={logout}/>
+        <Navbar user={user} logout={logout} />
         <Switch>
           <Container fluid>
             <Route path="/" exact>
@@ -31,6 +32,15 @@ function App() {
             </Route>
             <Route path="/jokes">
               <Jokes />
+            </Route>
+            <Route path="/adminstuff">
+              <Admin />
+            </Route>
+            <Route path="/sports">
+              <Sports sports={sports} setSports={setSports} />
+            </Route>
+            <Route path="/teams">
+              <Teams sportTeams={sportTeams} setSportTeams={setSportTeams} />
             </Route>
             <Route path="/products" />
             <Route path="/signin">

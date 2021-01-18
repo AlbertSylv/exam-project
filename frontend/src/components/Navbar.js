@@ -6,14 +6,27 @@ function NavbarShow({ user, logout }) {
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Link to="/" className="navbar-brand">
-        BANDEN <i className="fab fa-typo3" />
+        SportsClub <i className="fab fa-typo3" />
       </Link>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto">
-          <Link to="/jokes" className="nav-link">
-            Jokes
+          <Link to="/home" className="nav-link">
+            Home
           </Link>
+          <Link to="/sports" className="nav-link">
+            Sports
+          </Link>
+          <Link to="/teams" className="nav-link">
+            Teams
+          </Link>
+          {localStorage.getItem("jwtToken") ? (
+            <Link to="/adminstuff" className="nav-link">
+              Admin stuff
+            </Link>
+          ) : (
+            <></>
+          )}
         </Nav>
         <Nav>
           {user.username !== "" ? (
